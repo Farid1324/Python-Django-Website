@@ -1,9 +1,12 @@
 <form method="post" action="{% url 'settings_preferences' %}">
   {% csrf_token %}
   {{ preferences_form.as_p }}
+  {% load static %}
+<link rel="stylesheet" href="{% static 'settings.css' %}">
   <div class="form-check form-switch mb-3">
-    <input class="form-check-input" type="checkbox" id="darkModeSwitch" name="dark_mode" {% if dark_mode %}checked{% endif %}>
-    <label class="form-check-label" for="darkModeSwitch">Enable dark mode</label>
+   Enter your mail <input class="Enter-mail">
   </div>
-  <button type="submit" class="btn btn-primary mt-3">Save Preferences</button>
+  <button type="submit" class="Save">Save Preferences</button>
+ 
+  
 </form>
