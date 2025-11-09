@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block index %}
+  <section class="py-5" style="background: linear-gradient(120deg, #f5f7fa 60%, #e4f9ff);">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card shadow-lg rounded-4 border-0" style="background-color: #eaf0fb;">
+            <div class="card-body p-5 text-center">
+              <img src="{% static 'img/success.svg' %}" width="80" alt="Success" class="mb-4">
+              <h2 class="mb-3 text-success">Expense Recorded!</h2>
+              <h4 class="text-dark mb-0">{{ expense_name }}</h4>
+              <h3 class="text-primary mb-4">${{ expense_amount }}</h3>
+              <p class="lead">Thank you for using <span style="font-weight:bolder;color:#4cd964;">Finance Tracker</span>. Stay on top of your expenses and improve your financial health!</p>
+              <a href="{% url 'index' %}" class="btn btn-outline-primary btn-lg mt-3">Add Another Expense</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

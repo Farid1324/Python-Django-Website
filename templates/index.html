@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block index %}
+  <!-- Carousel -->
+  {% include 'carusel.html' %}
+
+  <!-- Expense Form Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card shadow-lg rounded-3 border-0">
+            <div class="card-body p-4">
+              <h2 class="mb-4 text-center text-primary">💸 Add a New Expense</h2>
+              <form action="{% url 'thanks_page' %}" method="POST">
+                {% csrf_token %}
+                <!-- Expense Name -->
+                <div class="form-group mb-3">
+                  <label class="form-label fw-bold">Expense Name</label>
+                  {{ form.name }}
+                </div>
+                <!-- Expense Amount -->
+                <div class="form-group mb-4">
+                  <label class="form-label fw-bold">Amount ($)</label>
+                  {{ form.phone }}
+                </div>
+                <!-- Submit Button Only -->
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-success btn-lg">
+                    ➕ Add Expense
+                    
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expense Analysis Section -->
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-10">
+          <div class="card shadow-sm border-0 p-4">
+            <h3 class="text-secondary mb-4">📊 Expense Analysis</h3>
+            <!-- Summary Cards -->
+            <div class="row text-center mb-4">
+              <div class="col-md-4">
+                <div class="p-3 bg-light rounded">
+                  <h5>Total Expenses</h5>
+                  <h2>$1,250</h2>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 bg-light rounded">
+                  <h5>Average Expense</h5>
+                  <h2>$83</h2>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 bg-light rounded">
+                  <h5>Maximum Expense</h5>
+                  <h2>$400</h2>
+                </div>
+              </div>
+            </div>
+            <!-- Recent Expenses Table -->
+            <h5 class="mb-3">Recent Expenses</h5>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Amount ($)</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Groceries</td>
+                  <td>$120</td>
+                  <td>2025-09-27</td>
+                </tr>
+                <tr>
+                  <td>Transport</td>
+                  <td>$40</td>
+                  <td>2025-09-26</td>
+                </tr>
+                <tr>
+                  <td>Subscription</td>
+                  <td>$15</td>
+                  <td>2025-09-25</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Chart for Expenses -->
+            <div class="mt-4">
+              <canvas id="expenseChart" height="150"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chart.js Script -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('expenseChart').getContext('2d');
+    const expenseChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Groceries', 'Transport', 'Subscription', 'Entertainment', 'Other'],
+        datasets: [{
+          label: 'Expenses ($)',
+          data: [120, 40, 15, 80, 60],
+          backgroundColor: '#4cd964'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } }
+      }
+    });
+  </script>
+{% endblock %}

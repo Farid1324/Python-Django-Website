@@ -1,0 +1,9 @@
+<form method="post" action="{% url 'settings_preferences' %}">
+  {% csrf_token %}
+  {{ preferences_form.as_p }}
+  <div class="form-check form-switch mb-3">
+    <input class="form-check-input" type="checkbox" id="darkModeSwitch" name="dark_mode" {% if dark_mode %}checked{% endif %}>
+    <label class="form-check-label" for="darkModeSwitch">Enable dark mode</label>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Save Preferences</button>
+</form>

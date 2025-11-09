@@ -1,0 +1,97 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- External CSS -->
+    <link href="{% static 'external.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+
+    <title>Finance Tracker</title>
+
+    <style>
+      body {
+        background-color: #f5f7fa;
+        font-family: 'Segoe UI', sans-serif;
+      }
+      .navbar {
+        background-color: #1e2a38;
+      }
+      .navbar-brand {
+        color: #fff !important;
+        font-weight: bold;
+        font-size: 1.3rem;
+      }
+      .sidebar {
+        background: #2c3e50;
+        min-height: 100vh;
+        padding-top: 2rem;
+      }
+      .sidebar a {
+        color: #ecf0f1;
+        display: block;
+        padding: 10px 20px;
+        margin: 5px 0;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: background 0.2s;
+      }
+      .sidebar a:hover {
+        background: #34495e;
+        color: #fff;
+      }
+      .content {
+        padding: 2rem;
+      }
+      footer {
+        background: #1e2a38;
+        color: #bdc3c7;
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="{% static 'img/Logo.png' %}" width="40" height="40" class="mr-2" alt="">
+        Finance Tracker
+      </a>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-2 sidebar">
+        <a href="{% url 'dashboard' %}">📊 Dashboard</a>
+        <a href="{% url 'add_expense' %}">➕ Add Expense</a>
+        <a href="{% url 'report' %}">📈 Report</a>
+        <a href="{% url 'settings' %}">⚙️ Settings</a>
+        <a href="{% url 'export_data' %}">📤 Export Data</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-10 content">
+          {% block index %}{% endblock %}
+          {% block thanks %}{% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        <img src="{% static 'img/Logo.png' %}" width="30" height="30" class="mr-2" alt="">
+        Finance Tracker © 2025 — Keep track of your expenses smartly
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
